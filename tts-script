@@ -1,0 +1,24 @@
+import pyautogui as pya # controls computer and executes commands
+import pyperclip  # flexible, cross-platform clipboard text handler
+import time
+import keyboard
+import pyttsx3
+engine = pyttsx3.init()
+engine.setProperty('rate', 170)
+
+
+# step 1 - run program
+# step 2 - highlight text
+# step 3 - click escape
+
+def copy_clipboard():
+    pyperclip.copy("") # clear previously copied info
+    pya.hotkey('ctrl', 'c') # copy what's highlighted
+    time.sleep(.1)  # wait a moment to make sure it's been copied to clipboard
+    
+    speech = pyperclip.paste()
+    engine.say(speech)
+    engine.runAndWait()
+   
+keyboard.add_hotkey('esc', copy_clipboard)
+keyboard.wait()
